@@ -14,6 +14,10 @@
         1.级联方式处理
         2.association
         3.分步查询
+
+        处理一对多的映射关系：
+        1.collection
+        2.分布查询
     -->
 
     <!--
@@ -24,6 +28,7 @@
         id：处理主键的实体类中属性的映射关系
         result：处理普通字段的实体类中属性的映射关系
         association：处理多对一的映射关系(处理实体类类型的属性)
+        collection：处理一对多的映射关系（处理集合类型的属性）
         column：设置映射关系中的字段名，必须是sql查询出的某一个字段
         property：设置映射关系中的属性的属性名，必须是处理的实体类类型的属性名
     -->
@@ -106,5 +111,10 @@
     <!--Emp getEmpAndDeptByStepOne(@Param("empId") Integer empId) -->
     <select id="getEmpAndDeptByStepOne" resultMap="empAndDeptByStepResultMap">
         select * from t_emp where emp_id = #{empId}
+    </select>
+
+    <!--List<Emp> getDeptAndEmpByStepTwo(@Param("deptId") Integer deptId)-->
+    <select id="getDeptAndEmpByStepTwo" resultType="Emp">
+        select * from t_emp where dept_id = #{deptId}
     </select>
 </mapper>
