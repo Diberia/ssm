@@ -14,19 +14,28 @@
             prefix、suffix：在标签中内容前面或后面添加指定内容
             prefixOverrides、suffixOverrides：在标签中内容前面或后面去掉指定内容
         4.choose、when、otherwise
-        相当于java中的if...else if...else
-        when至少设置一个，otherwise最多设置一个
+            相当于java中的if...else if...else
+            when至少设置一个，otherwise最多设置一个
         5.foreach
-        collection：设置要循环的数组或集合
-        item：用一个字符串表示数组或集合中的每一个数据
-        separator：设置每次循环的数据之间的分隔符
-        open：循环的所有内容以什么开始
-        close：循环的所有内容以什么结束
+            collection：设置要循环的数组或集合
+            item：用一个字符串表示数组或集合中的每一个数据
+            separator：设置每次循环的数据之间的分隔符
+            open：循环的所有内容以什么开始
+            close：循环的所有内容以什么结束
+        6.sql片段
+            可以记录一段sql，在需要用的地方使用include标签进行引用
+            <sql id="empColumns">
+                emp_id,emp_name,age,gender,dept_id
+            </sql>
+            <include refid="empColumns"></include>
     -->
+    <sql id="empColumns">
+        emp_id,emp_name,age,gender,dept_id
+    </sql>
 
     <!--List<Emp> getEmpByCondition(Emp emp) -->
     <select id="getEmpByCondition" resultType="Emp">
-        select * from t_emp
+        select <include refid="empColumns"></include> from t_emp
         <trim prefix="where" suffixOverrides="and">
             <if test="empName != null and empName != ''">
                 emp_name = #{empName} and
