@@ -8,12 +8,29 @@
         1.if，通过test属性中的表达式判断标签中的内容是否有效（是否会拼接到sql中）
         2.where
             a.若where标签中有条件成立，会自动生成where关键字
-            b.会自动将where标签中内容前多余的and去掉
+            b.会自动将where标签中内容前多余的and去掉，但是其中内容后多余的and无法去掉
             c.若where标签中没有任何一个条件成立，则where没有任何功能
+        3.trim
+            prefix、suffix：在标签中内容前面或后面添加指定内容
+            prefixOverrides、suffixOverrides：在标签中内容前面或后面去掉指定内容
     -->
 
     <!--List<Emp> getEmpByCondition(Emp emp) -->
     <select id="getEmpByCondition" resultType="Emp">
+        select * from t_emp
+        <trim prefix="where" suffixOverrides="and">
+            <if test="empName != null and empName != ''">
+                emp_name = #{empName} and
+            </if>
+            <if test="age != null and age != ''">
+                age = #{age} and
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender}
+            </if>
+        </trim>
+    </select>
+    <select id="getEmpByConditionTwo" resultType="Emp">
         select * from t_emp
         <where>
             <if test="empName != null and empName != ''">
