@@ -1,6 +1,7 @@
 package com.atguigu.spring.test;
 
 import com.atguigu.spring.pojo.Person;
+import com.atguigu.spring.pojo.Student;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -32,5 +33,14 @@ public class IOCByXMLTest {
         //根据接口类型可以获取bean
         Person person = ioc.getBean(Person.class);
         System.out.println(person);
+    }
+
+    @Test
+    public void testDI(){
+        //获取IOC容器
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc.xml");
+        //获取bean
+        Student student = ioc.getBean("studentTwo", Student.class);
+        System.out.println(student);
     }
 }
