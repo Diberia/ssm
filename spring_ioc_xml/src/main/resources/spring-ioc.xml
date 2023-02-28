@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="studentOne" class="com.atguigu.spring.pojo.Student"></bean>
 
@@ -70,7 +70,21 @@
     <bean id="clazzOne" class="com.atguigu.spring.pojo.Clazz">
         <property name="cid" value="11111"></property>
         <property name="cname" value="最强王者班"></property>
+        <property name="students" ref="studentList"></property>
+
+        <!--<property name="students">
+            <list>
+                <ref bean="studentOne"></ref>
+                <ref bean="studentTwo"></ref>
+                <ref bean="studentThree"></ref>
+            </list>
+        </property>-->
     </bean>
 
-
+    <!--配置一个集合类型的bean，需要使用util的约束 -->
+    <util:list id="studentList">
+        <ref bean="studentOne"></ref>
+        <ref bean="studentTwo"></ref>
+        <ref bean="studentThree"></ref>
+    </util:list>
 </beans>

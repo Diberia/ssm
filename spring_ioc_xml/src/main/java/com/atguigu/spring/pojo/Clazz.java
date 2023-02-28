@@ -1,8 +1,11 @@
 package com.atguigu.spring.pojo;
 
+import java.util.List;
+
 public class Clazz {
     private Integer cid;
     private String cname;
+    private List<Student> students;
 
     public Clazz(Integer cid, String cname) {
         this.cid = cid;
@@ -28,11 +31,20 @@ public class Clazz {
         this.cname = cname;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     @Override
     public String toString() {
         return "Clazz{" +
                 "cid=" + cid +
                 ", cname='" + cname + '\'' +
+                ", students=" + students +
                 '}';
     }
 }
