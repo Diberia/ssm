@@ -1,11 +1,14 @@
 package com.atguigu.spring.pojo;
 
+import java.util.Arrays;
+
 public class Student implements Person{
     private Integer sid;
     private String sname;
     private Integer age;
     private String gender;
     private Double score;
+    private String[] hobby;
     private Clazz clazz;
 
     public Student(Integer sid, String sname, String gender, Integer age) {
@@ -74,6 +77,14 @@ public class Student implements Person{
         this.clazz = clazz;
     }
 
+    public String[] getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String[] hobby) {
+        this.hobby = hobby;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -82,6 +93,7 @@ public class Student implements Person{
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", score=" + score +
+                ", hobby=" + Arrays.toString(hobby) +
                 ", clazz=" + clazz +
                 '}';
     }

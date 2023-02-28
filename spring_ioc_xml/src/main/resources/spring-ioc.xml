@@ -58,10 +58,19 @@
                 <property name="cname" value="远大前程班"></property>
             </bean>
         </property>
+        <property name="hobby">
+            <array>
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>烫头</value>
+            </array>
+        </property>
     </bean>
 
     <bean id="clazzOne" class="com.atguigu.spring.pojo.Clazz">
         <property name="cid" value="11111"></property>
         <property name="cname" value="最强王者班"></property>
     </bean>
+
+
 </beans>
