@@ -23,4 +23,21 @@
         <constructor-arg value="女"></constructor-arg>
         <constructor-arg value="24" name="age"></constructor-arg>
     </bean>
+
+    <bean id="studentFour" class="com.atguigu.spring.pojo.Student">
+        <property name="sid" value="1003"></property>
+        <!--
+            <:&lt;
+            >:&gt;
+            CDATA节其中的内容会原样解析<![CDATA[...]]>
+            CDATA节是xml中一个特殊的标签，因此不能写在一个属性中
+        -->
+<!--        <property name="sname" value="&lt;王五&gt;"></property>-->
+        <property name="sname">
+            <value><![CDATA[<王五>]]></value>
+        </property>
+        <property name="gender">
+            <null/>
+        </property>
+    </bean>
 </beans>
