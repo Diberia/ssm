@@ -65,6 +65,13 @@
                 <value>烫头</value>
             </array>
         </property>
+        <property name="teacherMap" ref="teacherMap"></property>
+        <!--<property name="teacherMap">
+            <map>
+                <entry key="10086" value-ref="teacherOne"></entry>
+                <entry key="10010" value-ref="teacherTwo"></entry>
+            </map>
+        </property>-->
     </bean>
 
     <bean id="clazzOne" class="com.atguigu.spring.pojo.Clazz">
@@ -81,10 +88,25 @@
         </property>-->
     </bean>
 
+    <bean id="teacherOne" class="com.atguigu.spring.pojo.Teacher">
+        <property name="tid" value="10086"></property>
+        <property name="tname" value="大宝"></property>
+    </bean>
+
+    <bean id="teacherTwo" class="com.atguigu.spring.pojo.Teacher">
+        <property name="tid" value="10010"></property>
+        <property name="tname" value="小宝"></property>
+    </bean>
+
     <!--配置一个集合类型的bean，需要使用util的约束 -->
     <util:list id="studentList">
         <ref bean="studentOne"></ref>
         <ref bean="studentTwo"></ref>
         <ref bean="studentThree"></ref>
     </util:list>
+
+    <util:map id="teacherMap">
+        <entry key="10086" value-ref="teacherOne"></entry>
+        <entry key="10010" value-ref="teacherTwo"></entry>
+    </util:map>
 </beans>
