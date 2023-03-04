@@ -1,8 +1,6 @@
 package com.atguigu.spring.test;
 
 import com.atguigu.spring.controller.UserController;
-import com.atguigu.spring.dao.UserDao;
-import com.atguigu.spring.service.UserService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,16 +14,23 @@ public class IOCByAnnotationTest {
 
         通过注解+扫描所配置的bean的id，默认值为类的小驼峰，即类名的首字母为小写的结果
         可以通过标识组件的注解的value属性设置bean的自定义的id
+
+        @Autowired：实现自动装配功能的注解
+        1.@Autowired注解能够标识的位置
+        a>标识在成员变量上，此时不需要设置成员变量的set方法
+        b>标识在set方法上
+        c>为当前成员变量赋值的有参构造上
      */
     @Test
     public void test(){
         ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc-annotation.xml");
         UserController userController = ioc.getBean(UserController.class);
 //        UserController userController = ioc.getBean("controller",UserController.class);
-        System.out.println(userController);
-        UserService userService = ioc.getBean(UserService.class);
-        System.out.println(userService);
-        UserDao userDao = ioc.getBean(UserDao.class);
-        System.out.println(userDao);
+//        System.out.println(userController);
+//        UserService userService = ioc.getBean(UserService.class);
+//        System.out.println(userService);
+//        UserDao userDao = ioc.getBean(UserDao.class);
+//        System.out.println(userDao);
+        userController.saveUser();
     }
 }
