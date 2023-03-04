@@ -20,6 +20,15 @@ public class IOCByAnnotationTest {
         a>标识在成员变量上，此时不需要设置成员变量的set方法
         b>标识在set方法上
         c>为当前成员变量赋值的有参构造上
+
+        2.@Autowired注解的原理
+        a>默认通过byType的方式，在IOC容器中通过类型匹配某个bean为属性赋值
+        b>若有多个类型匹配的bean，此时会自动转换为byName的方式实现自动装配的效果
+            即将要赋值的属性的属性名作为bean的id匹配某个bean为属性赋值
+        c>若byType和byName的方式都无法实现自动装配，即IOC容器中有多个类型匹配的bean
+            且这些bean的id和要赋值的属性的属性名都不一致，此时抛异常:NoUniqueBeanDefinitionException
+        d>此时可以在要复制的属性上，添加一个注解@Qualifier
+        通过该注解的value属性值，指定某个bean的id，将这个bean为属性赋值
      */
     @Test
     public void test(){

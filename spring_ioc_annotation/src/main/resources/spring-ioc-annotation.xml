@@ -24,4 +24,10 @@
 <!--&lt;!&ndash;        <context:exclude-filter type="assignable" expression="com.atguigu.spring.controller.UserController"/>&ndash;&gt;-->
 <!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
 <!--    </context:component-scan>-->
+
+    <bean id="service" class="com.atguigu.spring.service.impl.UserServiceImpl"></bean>
+
+    <bean id="dao" class="com.atguigu.spring.dao.impl.UserDaoImpl"></bean>
+
+
 </beans>
