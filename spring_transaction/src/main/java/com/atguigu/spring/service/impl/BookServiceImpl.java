@@ -4,6 +4,7 @@ import com.atguigu.spring.dao.BookDao;
 import com.atguigu.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -20,6 +21,10 @@ public class BookServiceImpl implements BookService {
             //设置不造成回归的异常
 //            noRollbackFor = ArithmeticException.class
 //            noRollbackForClassName = "java.lang.ArithmeticException"
+            //设置事务的隔离级别，好像和mysql有关，不知道什么意思
+//            isolation = Isolation.DEFAULT
+            //传播行为
+            propagation = Propagation.REQUIRES_NEW
     )
     public void buyBook(Integer userId, Integer bookId) {
 //        try {
