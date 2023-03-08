@@ -4,8 +4,6 @@ import com.atguigu.spring.dao.BookDao;
 import com.atguigu.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -13,7 +11,7 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
-    @Transactional(
+    /*@Transactional(
             //只读处理，不能有增删改，只能查询只读，不知道有什么用
 //            readOnly = true
             //超时处理
@@ -25,7 +23,7 @@ public class BookServiceImpl implements BookService {
 //            isolation = Isolation.DEFAULT
             //传播行为
             propagation = Propagation.REQUIRES_NEW
-    )
+    )*/
     public void buyBook(Integer userId, Integer bookId) {
 //        try {
 //            //程序休眠时间
