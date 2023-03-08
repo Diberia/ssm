@@ -12,8 +12,23 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
-    @Transactional
+    @Transactional(
+            //只读处理，不能有增删改，只能查询只读，不知道有什么用
+//            readOnly = true
+            //超时处理
+//            timeout = 3
+            //设置不造成回归的异常
+//            noRollbackFor = ArithmeticException.class
+//            noRollbackForClassName = "java.lang.ArithmeticException"
+    )
     public void buyBook(Integer userId, Integer bookId) {
+//        try {
+//            //程序休眠时间
+//            TimeUnit.SECONDS.sleep(5);
+//        } catch (InterruptedException e){
+//            e.printStackTrace();
+//        }
+
         //查询图书的价格
         Integer price = bookDao.getPriceBookId(bookId);
 
@@ -22,5 +37,7 @@ public class BookServiceImpl implements BookService {
 
         //更新用户的余额
         bookDao.updateBalance(userId,price);
+
+//        System.out.println(1/0);
     }
 }
