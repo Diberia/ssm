@@ -20,6 +20,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * 若浏览器所发送的请求的请求路径和@RequestMapping注解value属性匹配，但是请求方式不匹配，
  * 此时页面报错：405
+ *
+ * 在@RequestMapping的基础上，结合请求方式的一些派生注解：
+ * @GetMapping,@PostMapping,@DeleteMapping,@PutMapping
+ *
+ * 4.@RequestMapping注解的params属性
+ * 作用：通过请求的请求参数匹配请求，即浏览器发送的请求的请求参数必须满足params属性的设置
+ * params可以使用四种表达式：
+ * "param"：表示当前所匹配请求的请求参数中必须携带param参数
+ * "!param"：表示当前所匹配请求的请求参数中一定不能携带param参数
+ * "param=value"：表示当前所匹配请求的请求参数中必须携带param参数且值必须为value
+ * "param!=value"：表示当前所匹配请求的请求参数中可以不懈怠param，若携带值一定不能是value
  */
 
 @Controller
@@ -28,8 +39,10 @@ public class TestRequestMappingController {
     //此时控制器方法所匹配的请求的请求路径为/test/hello
     @RequestMapping(
             value = {"/hello","/abc"},
-            method = {RequestMethod.POST,RequestMethod.GET}
+            method = {RequestMethod.POST,RequestMethod.GET},
+            params = {"username","!password","age=20","gender!=女"}
     )
+
     public String hello(){
         return "success";
     }
