@@ -1,6 +1,7 @@
 package com.atguigu.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,6 +41,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * ?:任意的单个字符(不包括？)
  * *：任意个数的任意字符(不包括?和/)
  * **：任意层数的任意目录，注意使用方式只能**写在双斜线中，前后不能有任何的其他字符
+ *
+ * 7.@RequestMapping注解使用路径中的占位符
+ * 传统：/deleteUser?id=1
+ * rest：/user/delete/1
+ * 需要在@RequestMapping注解的value属性中所设置的路径中，使用{XXX}的方式表示路径中的数据
+ * 再通过@PathVariable注解，将占位符所标识的值和控制器方法的形参进行绑定
  */
 
 @Controller
@@ -58,6 +65,12 @@ public class TestRequestMappingController {
 
     @RequestMapping("/a**a/test/ant")
     public String testAnt(){
+        return "success";
+    }
+
+    @RequestMapping("/test/rest/{username}/{id}")
+    public String testRest(@PathVariable("id") Integer id,@PathVariable("username") String username){
+        System.out.println("id:"+id+",username:"+username);
         return "success";
     }
 }
