@@ -55,7 +55,7 @@ public class TestRequestMappingController {
     //此时控制器方法所匹配的请求的请求路径为/test/hello
     @RequestMapping(
             value = {"/hello","/abc"},
-            method = {RequestMethod.POST,RequestMethod.GET},
+            method = {RequestMethod.POST,RequestMethod.GET},//不写method默认处理所有的请求方法
 //            params = {"username","!password","age=20","gender!=女"},
             headers = {"referer"}
     )

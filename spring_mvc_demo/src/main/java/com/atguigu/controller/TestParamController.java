@@ -1,5 +1,6 @@
 package com.atguigu.controller;
 
+import com.atguigu.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -24,12 +25,16 @@ import javax.servlet.http.HttpSession;
  * defaultValue：设置当没有传输value所对应的请求参数时，为形参设置的默认值，此时和required属性值无关
  * 4.@RequestHeader：将请求头信息和控制器方法的形参绑定
  * 5.@CookieValue：将cookie数据和控制器方法的形参绑定
+ * 6.通过控制器方法的实体类类型的形参获取请求参数
+ * 需要在控制器方法的形参位置设置实体类类型的形参，要保证实体类中的属性的属性名和请求参数的名字一致
+ * 可以通过实体类类型的形参获取请求参数
  */
 @Controller
 public class TestParamController {
     @RequestMapping("/param/servletAPI")
     public String getParamByServletAPI(HttpServletRequest request){
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession();//不知道这句话是干嘛的，但是如果要想获取下面的cookie必须先运行这句话
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println("username:"+username+",password:"+password);
@@ -46,6 +51,12 @@ public class TestParamController {
         System.out.println("referer:"+referer);
         System.out.println("jsessionId:"+jsessionId);
         System.out.println("username:"+username+",password:"+password);
+        return "success";
+    }
+
+    @RequestMapping("/param/pojo")
+    public String getParamByPojo(User user){
+        System.out.println(user);
         return "success";
     }
 }
