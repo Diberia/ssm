@@ -34,6 +34,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * 5.@RequestMapping注解的headers属性
  * 作用：通过请求的请求头信息匹配请求，即浏览器发送的请求头信息必须满足headers属性的设置
+ *
+ * 6.SpringMVC支持ant风格的路径
+ * 在@RequestMapping注解的value属性值中设置一些特殊字符
+ * ?:任意的单个字符(不包括？)
+ * *：任意个数的任意字符(不包括?和/)
+ * **：任意层数的任意目录，注意使用方式只能**写在双斜线中，前后不能有任何的其他字符
  */
 
 @Controller
@@ -46,8 +52,12 @@ public class TestRequestMappingController {
 //            params = {"username","!password","age=20","gender!=女"},
             headers = {"referer"}
     )
-
     public String hello(){
+        return "success";
+    }
+
+    @RequestMapping("/a**a/test/ant")
+    public String testAnt(){
         return "success";
     }
 }
