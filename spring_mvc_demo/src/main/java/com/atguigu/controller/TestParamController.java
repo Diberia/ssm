@@ -1,10 +1,13 @@
 package com.atguigu.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 1.通过servletAPI获取
@@ -19,11 +22,14 @@ import javax.servlet.http.HttpServletRequest;
  * 默认值为true，表示value所对应的请求参数必须传输，否则页面报错
  * 若设置为false，则表示value所对应的请求参数不是必须传输，若为传输，则形参值为null
  * defaultValue：设置当没有传输value所对应的请求参数时，为形参设置的默认值，此时和required属性值无关
+ * 4.@RequestHeader：将请求头信息和控制器方法的形参绑定
+ * 5.@CookieValue：将cookie数据和控制器方法的形参绑定
  */
 @Controller
 public class TestParamController {
     @RequestMapping("/param/servletAPI")
     public String getParamByServletAPI(HttpServletRequest request){
+        HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println("username:"+username+",password:"+password);
@@ -33,8 +39,12 @@ public class TestParamController {
     @RequestMapping("/param")
     public String getParam(
             @RequestParam(value = "userName",required = true,defaultValue = "hello") String username,
-            String password
+            String password,
+            @RequestHeader("referer") String referer,
+            @CookieValue("JSESSIONID") String jsessionId
     ){
+        System.out.println("referer:"+referer);
+        System.out.println("jsessionId:"+jsessionId);
         System.out.println("username:"+username+",password:"+password);
         return "success";
     }
