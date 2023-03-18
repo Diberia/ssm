@@ -20,7 +20,7 @@ import java.util.Map;
  * 4.使用map向请求域共享数据
  * 5.Model和ModelMap和Map的关系
  * 其实在底层中，这些类型的形参最终都是通过org.springframework.validation.support.BindingAwareModelMap创建
- * 四选一就行
+ * 四选一就行，控制器方法统一的返回值为ModelAndView
  */
 @Controller
 public class TestScopeController {
