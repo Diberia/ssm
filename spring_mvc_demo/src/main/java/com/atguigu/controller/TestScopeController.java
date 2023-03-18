@@ -6,6 +6,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -58,6 +60,19 @@ public class TestScopeController {
         //org.springframework.validation.support.BindingAwareModelMap
         System.out.println(map.getClass().getName());
         map.put("testRequestScope","hello,map");
+        return "success";
+    }
+
+    @RequestMapping("/test/session")
+    public String testSession(HttpSession session){
+        session.setAttribute("testSessionScope","hello,session");
+        return "success";
+    }
+
+    @RequestMapping("/test/application")
+    public String testApplication(HttpSession session){
+        ServletContext servletContext = session.getServletContext();
+        servletContext.setAttribute("testApplicationScope","hello,application");
         return "success";
     }
 }
