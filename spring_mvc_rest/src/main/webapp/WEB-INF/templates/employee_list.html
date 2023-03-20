@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>employee_list</title>
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
 </head>
 <body>
     <table>
@@ -14,7 +15,7 @@
             <th>lastName</th>
             <th>email</th>
             <th>gender</th>
-            <th>options</th>
+            <th>options(<a th:href="@{/to/add}">add</a> )</th>
         </tr>
         <tr th:each="employee : ${allEmployee}">
             <td th:text="${employee.id}"></td>
