@@ -61,6 +61,7 @@
 
 <!--        <ref bean="firstInterceptor"/>-->
         <ref bean="firstInterceptor"/><!--扩大扫描控制组件的那个东西的范围 -->
+        <ref bean="secondInterceptor"/><!--扩大扫描控制组件的那个东西的范围 -->
 
 <!--        <mvc:interceptor>-->
 <!--            &lt;!&ndash;配置需要拦截的请求路径，/**表示所有请求，但是一个*只代表一层目录 &ndash;&gt;-->
