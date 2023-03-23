@@ -55,21 +55,32 @@
 
 <!--    <bean id="firstInterceptor" class="com.atguigu.interceptor.FirstInterceptor"></bean>-->
 
-    <mvc:interceptors>
-        <!--bean和ref标签所配置的拦截器默认对DispatcherServlet处理的所有的请求进行拦截 -->
-<!--        <bean class="com.atguigu.interceptor.FirstInterceptor"/>-->
+<!--    <mvc:interceptors>-->
+<!--        &lt;!&ndash;bean和ref标签所配置的拦截器默认对DispatcherServlet处理的所有的请求进行拦截 &ndash;&gt;-->
+<!--&lt;!&ndash;        <bean class="com.atguigu.interceptor.FirstInterceptor"/>&ndash;&gt;-->
 
-<!--        <ref bean="firstInterceptor"/>-->
-        <ref bean="firstInterceptor"/><!--扩大扫描控制组件的那个东西的范围 -->
-        <ref bean="secondInterceptor"/><!--扩大扫描控制组件的那个东西的范围 -->
+<!--&lt;!&ndash;        <ref bean="firstInterceptor"/>&ndash;&gt;-->
+<!--        <ref bean="firstInterceptor"/>&lt;!&ndash;扩大扫描控制组件的那个东西的范围 &ndash;&gt;-->
+<!--        <ref bean="secondInterceptor"/>&lt;!&ndash;扩大扫描控制组件的那个东西的范围 &ndash;&gt;-->
 
-<!--        <mvc:interceptor>-->
-<!--            &lt;!&ndash;配置需要拦截的请求路径，/**表示所有请求，但是一个*只代表一层目录 &ndash;&gt;-->
-<!--            <mvc:mapping path="/**"/>-->
-<!--            &lt;!&ndash;配置需要排除拦截的请求的请求路径 &ndash;&gt;-->
-<!--            <mvc:exclude-mapping path="/abc"/>-->
-<!--            &lt;!&ndash;配置拦截器 &ndash;&gt;-->
-<!--            <ref bean="firstInterceptor"/>-->
-<!--        </mvc:interceptor>-->
-    </mvc:interceptors>
+<!--&lt;!&ndash;        <mvc:interceptor>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;配置需要拦截的请求路径，/**表示所有请求，但是一个*只代表一层目录 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <mvc:mapping path="/**"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;配置需要排除拦截的请求的请求路径 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <mvc:exclude-mapping path="/abc"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;配置拦截器 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <ref bean="firstInterceptor"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mvc:interceptor>&ndash;&gt;-->
+<!--    </mvc:interceptors>-->
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--key设置要处理的异常，value设置出现该异常时要跳转的页面所对应的逻辑视图 -->
+                <prop key="java.lang.ArithmeticException">error</prop>
+            </props>
+        </property>
+        <!--设置共享在请求域中的异常信息的属性名 -->
+        <property name="exceptionAttribute" value="ex"></property>
+    </bean>
 </beans>
